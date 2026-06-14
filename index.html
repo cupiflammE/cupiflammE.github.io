@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ammar Sufi - Student e-Portfolio</title>
+    <style>
+        :root {
+            --primary-color: #00689D; /* SDG 16 Deep Royal Blue */
+            --secondary-color: #0A3B5C; /* Darker Blue Accent */
+            --accent-color: #4B9CD3; /* Bright Blue */
+            --dark-color: #111827;
+            --light-color: #F3F4F6;
+            --white: #FFFFFF;
+            --gray: #6B7280;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+        }
+
+        /* Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(17, 24, 39, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            color: var(--white);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #E5E7EB;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero / Profile Section */
+        #home {
+            background: linear-gradient(135deg, var(--dark-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 6rem 2rem 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-img-placeholder {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 4px solid var(--accent-color);
+            margin: 0 auto 1.5rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .meta-item span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.25rem;
+        }
+
+        .meta-item p {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .sdg-badge {
+            background-color: var(--primary-color); 
+            color: var(--white);
+            padding: 1.25rem;
+            border-radius: 8px;
+            display: inline-block;
+            font-weight: bold;
+            margin-top: 1rem;
+            box-shadow: var(--shadow);
+            text-align: left;
+            width: 100%;
+            max-width: 650px;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .sdg-badge span {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: normal;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        /* Base Section Layout */
+        section.content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Grid Layouts for Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background-color: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #374151 0%, #111827 100%);
+            color: #9CA3AF;
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-tag {
+            align-self: flex-start;
+            background-color: rgba(0, 104, 157, 0.1);
+            color: var(--primary-color);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 1.25rem;
+        }
+
+        /* Action Buttons */
+        .btn-group {
+            margin-top: auto;
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-secondary {
+            background-color: var(--dark-color);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: #374151;
+        }
+
+        /* Reflection Section */
+        .reflection-box {
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border-top: 6px solid var(--primary-color);
+        }
+
+        .reflection-box p {
+            font-size: 1.1rem;
+            color: #374151;
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            background-color: var(--white);
+            color: var(--dark-color);
+            padding: 0.6rem 1.25rem;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 2.5rem 2rem;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            #home {
+                padding: 4rem 1rem 3rem 1rem;
+            }
+
+            section.content-section {
+                padding: 3.5rem 1rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">AMMAR<span>SUFI</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#labs">Labs</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#reflection">Reflection</a></li>
+                <li><a href="#skills">Skills</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="hero-container">
+            <div class="profile-img-placeholder">AS</div>
+            <h1>AMMAR SUFI</h1>
+            <p class="subtitle">Program: Bachelor of Software Engineering</p>
+            
+            <div class="meta-grid">
+                <div class="meta-item">
+                    <span>Matric Number</span>
+                    <p>A211637</p>
+                </div>
+                <div class="meta-item">
+                    <span>Course Instructor</span>
+                    <p>DR. NAZATUL</p>
+                </div>
+                <div class="meta-item">
+                    <span>Institution</span>
+                    <p>UKM (FTSM)</p>
+                </div>
+            </div>
+
+            <div class="sdg-badge">
+                UN Sustainable Development Goal Alignment:
+                <strong>SDG 16 — Peace, Justice and Strong Institutions (Responsive Systems)</strong>
+                <span>"Why it matters to me: Building digital tools to help report illegal parking, blocked access points, and broken or abandoned vehicles directly increases community accountability and civic safety."</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="labs" class="content-section">
+        <h2 class="section-title">Laboratory Practicums</h2>
+        <div class="card-grid">
+            
+            <!-- Lab 1 -->
+            <div class="card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/Ah2AK1GVcVg" allowfullscreen></iframe>
+                </div>
+                <div class="card-body">
+                    <div class="card-tag">Lab 1</div>
+                    <h3 class="card-title">User Interface (UI) Development</h3>
+                    <p class="card-description">Exploration of static structures, declarative spatial partitioning, and core layout components within the Jetpack Compose framework.</p>
+                </div>
+            </div>
+
+            <!-- Lab 2 -->
+            <div class="card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/7KZ1mmjIUkE" allowfullscreen></iframe>
+                </div>
+                <div class="card-body">
+                    <div class="card-tag">Lab 2</div>
+                    <h3 class="card-title">Interaction Handlers & State</h3>
+                    <p class="card-description">Implementing runtime reactivity, user behavior observation events, and mutable state structures to handle operational UI shifts.</p>
+                </div>
+            </div>
+
+            <!-- Lab 3 -->
+            <div class="card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/pqU8pgqbP1w" allowfullscreen></iframe>
+                </div>
+                <div class="card-body">
+                    <div class="card-tag">Lab 3</div>
+                    <h3 class="card-title">Material Design Foundations</h3>
+                    <p class="card-description">Applying unified component rules, theme tokens, styling aesthetics, and visual hierarchies using modern Material 3 guidelines.</p>
+                </div>
+            </div>
+
+            <!-- Lab 4 -->
+            <div class="card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/0hQI1zeN8yY" allowfullscreen></iframe>
+                </div>
+                <div class="card-body">
+                    <div class="card-tag">Lab 4</div>
+                    <h3 class="card-title">Navigation Architecture</h3>
+                    <p class="card-description">Constructing secure parameter pipelines, routing graphs, back-stack operations, and structured view composition control.</p>
+                </div>
+            </div>
+
+            <!-- Lab 5 -->
+            <div class="card">
+                <div class="video-container">
+                    <div class="video-placeholder">Lab 5 (Room Database) Video Presentation Placeholder</div>
+                </div>
+                <div class="card-body">
+                    <div class="card-tag">Lab 5</div>
+                    <h3 class="card-title">Room Data Persistence</h3>
+                    <p class="card-description">Integrating local database frameworks, abstract DAOs, entity relationships, and asynchronous background worker patterns for offline processing.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="projects" class="content-section" style="background-color: var(--white);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="section-title">Core Applications & Projects</h2>
+            <div class="card-grid">
+                
+                <!-- Project 1 -->
+                <div class="card" style="background-color: var(--light-color);">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/0hQI1zeN8yY" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tag" style="background-color: var(--primary-color); color: var(--white);">Project 1</div>
+                        <h3 class="card-title">System Architecture Core Integration</h3>
+                        <p class="card-description">A fully realized implementation showcasing structural declarative composition, interactive views, unified system navigations, and structured state parameters.</p>
+                        <div class="btn-group">
+                            <a href="https://github.com/cupiflammE/A211637_AMMARSUFI_DRNAZATUL_PROJECT1.git" target="_blank" class="btn btn-secondary">Source Code (GitHub)</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="card" style="background-color: var(--light-color);">
+                    <div class="video-container">
+                        <div class="video-placeholder">Project 2 Video Presentation Placeholder</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tag" style="background-color: var(--primary-color); color: var(--white);">Project 2</div>
+                        <h3 class="card-title">Full-Stack Mobile Application</h3>
+                        <p class="card-description">Advanced processing module combining persistent Room relational data layers, responsive views, unified actions, and robust background services.</p>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-secondary">Source Code (GitHub)</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="reflection" class="content-section">
+        <h2 class="section-title">Milestone Retrospective</h2>
+        <div class="reflection-box">
+            <p>
+                My technical journey from Lab 1 to Project 2 has been a profoundly transformative experience, evolving step-by-step from building simple, static user interfaces to engineering comprehensive, data-driven mobile applications. Progressing through foundational layouts, complex user interactions, and programmatic navigation pipelines allowed me to understand how isolated UI views scale into fully interconnected digital ecosystems. Integrating specialized persistence layers like Room database logic bridged the final gap between presentation code and durable local storage. Guided by Dr. Nazatul, this rigorous structured learning pathway has not only fortified my operational mastery of Android systems but also developed the systemic architectural design skills necessary for professional enterprise delivery.
+            </p>
+        </div>
+    </section>
+
+    <section id="skills" class="content-section" style="background-color: var(--white);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="section-title">Technical Expertise</h2>
+            <div class="skills-container">
+                <div class="skill-tag">Jetpack Compose</div>
+                <div class="skill-tag">Room Database</div>
+                <div class="skill-tag">Retrofit API</div>
+                <div class="skill-tag">Firebase Integration</div>
+                <div class="skill-tag">State Management & Architecture</div>
+                <div class="skill-tag">PHP & SQL Datastores</div>
+                <div class="skill-tag">JavaScript Application Scripts</div>
+                <div class="skill-tag">Figma UI Wireframing</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p><strong>AMMAR SUFI</strong> | Matric No: A211637</p>
+        <p>Course Module under supervision of: <strong>DR. NAZATUL</strong></p>
+        <p style="font-size: 0.8rem; margin-top: 1rem; opacity: 0.5;">&copy; 2026 Student Engineering Portfolio. Universiti Kebangsaan Malaysia (UKM).</p>
+    </footer>
+
+</body>
+</html>
